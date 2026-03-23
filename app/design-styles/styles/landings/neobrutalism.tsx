@@ -2,342 +2,788 @@
 
 import React, { CSSProperties } from "react";
 
+const border = "3px solid #000";
+const shadow = "4px 4px 0px #000";
+const shadowLg = "6px 6px 0px #000";
+const fontMono = "'Courier New', Courier, monospace";
+const fontSans = "'Arial Black', 'Helvetica Neue', Arial, sans-serif";
+
+const colors = {
+  bg: "#FFFDF5",
+  yellow: "#FFE156",
+  pink: "#FF6B9D",
+  blue: "#4ECDC4",
+  purple: "#C3A6FF",
+  orange: "#FF8A5C",
+  green: "#A8E6CF",
+  dark: "#1A1A2E",
+  white: "#FFFFFF",
+};
+
+const baseButton = (
+  bg: string,
+  large?: boolean
+): CSSProperties => ({
+  display: "inline-block",
+  padding: large ? "16px 36px" : "12px 24px",
+  fontSize: large ? "18px" : "16px",
+  fontWeight: 900,
+  fontFamily: fontSans,
+  color: "#000",
+  backgroundColor: bg,
+  border,
+  borderRadius: 0,
+  boxShadow: shadow,
+  cursor: "pointer",
+  textDecoration: "none",
+  transition: "transform 0.1s, box-shadow 0.1s",
+  boxSizing: "border-box" as const,
+});
+
+const cardStyle = (bg: string): CSSProperties => ({
+  backgroundColor: bg,
+  border,
+  borderRadius: 0,
+  boxShadow: shadowLg,
+  padding: 32,
+  boxSizing: "border-box" as const,
+});
+
+const sectionPadding: CSSProperties = {
+  padding: "80px 24px",
+  maxWidth: 1200,
+  margin: "0 auto",
+  boxSizing: "border-box" as const,
+  width: "100%",
+};
+
+const sectionHeading: CSSProperties = {
+  fontSize: "clamp(28px, 4vw, 42px)",
+  fontWeight: 900,
+  fontFamily: fontSans,
+  color: "#000",
+  textAlign: "center",
+  marginBottom: 16,
+  textTransform: "uppercase",
+  letterSpacing: "-1px",
+};
+
+const sectionSub: CSSProperties = {
+  fontSize: 18,
+  fontFamily: fontMono,
+  color: "#333",
+  textAlign: "center",
+  marginBottom: 48,
+  maxWidth: 600,
+  marginLeft: "auto",
+  marginRight: "auto",
+};
+
 export function NeobrutalismLanding() {
-  const section = (extra: CSSProperties): CSSProperties => ({
-    width: "100%",
-    padding: "64px 24px",
-    boxSizing: "border-box" as const,
-    borderRadius: 0,
-    ...extra,
-  });
-
-  const heading = (extra: CSSProperties = {}): CSSProperties => ({
-    fontSize: 36,
-    fontWeight: 900,
-    textAlign: "center" as const,
-    margin: "0 0 12px",
-    borderRadius: 0,
-    ...extra,
-  });
-
-  const card = (bg: string, shadow = "4px 4px 0 #000"): CSSProperties => ({
-    background: bg,
-    border: "3px solid #000",
-    boxShadow: shadow,
-    borderRadius: 0,
-    padding: 28,
-    boxSizing: "border-box" as const,
-  });
-
-  const grid3: CSSProperties = {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-    gap: 24,
-    maxWidth: 1060,
-    margin: "0 auto",
-    width: "100%",
-  };
-
-  const btnBase: CSSProperties = {
-    border: "3px solid #000",
-    borderRadius: 0,
-    fontWeight: 800,
-    fontSize: 16,
-    cursor: "pointer",
-    padding: "14px 28px",
-    boxSizing: "border-box" as const,
-  };
-
   return (
-    <div style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif", color: "#000", borderRadius: 0, margin: 0, padding: 0, minHeight: "100vh" }}>
-
-      {/* 1. HEADER */}
+    <div
+      style={{
+        backgroundColor: colors.bg,
+        color: "#000",
+        fontFamily: fontSans,
+        minHeight: "100vh",
+        margin: 0,
+        padding: 0,
+        borderRadius: 0,
+      }}
+    >
+      {/* ============ HEADER ============ */}
       <header
         style={{
-          background: "#fff",
-          borderBottom: "3px solid #000",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
           padding: "0 32px",
           height: 64,
-          borderRadius: 0,
+          borderBottom: border,
+          backgroundColor: colors.white,
+          position: "sticky",
+          top: 0,
+          zIndex: 100,
+          flexWrap: "wrap",
+          gap: 12,
+          boxSizing: "border-box" as const,
         }}
       >
-        <span style={{ fontWeight: 900, fontSize: 20, whiteSpace: "nowrap" }}>&#9650; Stackpulse</span>
-        <nav style={{ display: "flex", gap: 28 }}>
-          {["Features", "Pricing", "Testimonials"].map((l) => (
-            <a key={l} href={`#${l.toLowerCase()}`} style={{ textDecoration: "none", color: "#000", fontWeight: 700, fontSize: 15 }}>{l}</a>
-          ))}
-        </nav>
-        <button
+        <span
           style={{
-            ...btnBase,
-            background: "#000",
-            color: "#fff",
-            padding: "8px 20px",
-            boxShadow: "none",
+            fontSize: 22,
+            fontWeight: 900,
+            fontFamily: fontSans,
+            letterSpacing: "-1px",
+            whiteSpace: "nowrap",
           }}
         >
+          &#9650; Stackpulse
+        </span>
+
+        <nav style={{ display: "flex", gap: 28, flexWrap: "wrap" }}>
+          {["Features", "Pricing", "Docs", "Blog"].map((link) => (
+            <a
+              key={link}
+              href={`#${link.toLowerCase()}`}
+              style={{
+                textDecoration: "none",
+                color: "#000",
+                fontWeight: 700,
+                fontSize: 15,
+                fontFamily: fontMono,
+                paddingBottom: 2,
+              }}
+            >
+              {link}
+            </a>
+          ))}
+        </nav>
+
+        <button style={{ ...baseButton(colors.yellow), padding: "8px 20px" }}>
           Sign Up
         </button>
       </header>
 
-      {/* 2. HERO */}
+      {/* ============ HERO ============ */}
       <section
-        style={section({
-          background: "#ffe156",
+        style={{
+          ...sectionPadding,
+          padding: "100px 24px 80px",
           textAlign: "center",
-          padding: "80px 24px",
-        })}
+        }}
       >
-        <h1 style={{ fontSize: 56, fontWeight: 900, margin: "0 0 16px", lineHeight: 1.1, borderRadius: 0 }}>
-          Ship faster.<br />Break nothing.
+        <div
+          style={{
+            display: "inline-block",
+            backgroundColor: colors.pink,
+            border,
+            padding: "6px 18px",
+            fontFamily: fontMono,
+            fontSize: 14,
+            fontWeight: 700,
+            marginBottom: 28,
+            boxShadow: "3px 3px 0px #000",
+            borderRadius: 0,
+          }}
+        >
+          NOW IN PUBLIC BETA
+        </div>
+
+        <h1
+          style={{
+            fontSize: "clamp(40px, 7vw, 80px)",
+            fontWeight: 900,
+            lineHeight: 1.05,
+            letterSpacing: "-3px",
+            margin: "0 auto 24px",
+            maxWidth: 900,
+            textTransform: "uppercase",
+            borderRadius: 0,
+          }}
+        >
+          Ship products
+          <br />
+          <span
+            style={{
+              backgroundColor: colors.yellow,
+              border,
+              padding: "0 12px",
+              display: "inline-block",
+              transform: "rotate(-1deg)",
+              boxShadow: shadow,
+              borderRadius: 0,
+            }}
+          >
+            that slap.
+          </span>
         </h1>
-        <p style={{ fontSize: 18, margin: "0 0 36px", maxWidth: 540, marginLeft: "auto", marginRight: "auto" }}>
-          Stackpulse gives your team real-time observability, instant deploys, and zero-config CI — so you can move fast without the mess.
+
+        <p
+          style={{
+            fontSize: "clamp(16px, 2.5vw, 22px)",
+            fontFamily: fontMono,
+            color: "#444",
+            maxWidth: 600,
+            margin: "0 auto 40px",
+            lineHeight: 1.6,
+          }}
+        >
+          The developer platform that turns your wildest ideas into
+          production-ready apps. No fluff, just build.
         </p>
-        <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-          <button
-            style={{
-              ...btnBase,
-              background: "#ff6b6b",
-              color: "#000",
-              boxShadow: "6px 6px 0 #000",
-            }}
-          >
-            Get Started Free
+
+        <div
+          style={{
+            display: "flex",
+            gap: 16,
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
+          <button style={baseButton(colors.yellow, true)}>
+            Get Started Free &rarr;
           </button>
-          <button
-            style={{
-              ...btnBase,
-              background: "#fff",
-              color: "#000",
-              boxShadow: "6px 6px 0 #000",
-            }}
-          >
-            See a Demo
+          <button style={baseButton(colors.white, true)}>
+            Watch Demo &#9654;
           </button>
         </div>
       </section>
 
-      {/* 3. LOGOS BAR */}
+      {/* ============ LOGOS BAR ============ */}
       <section
-        style={section({
-          background: "#fff",
-          borderTop: "3px solid #000",
-          borderBottom: "3px solid #000",
+        style={{
+          borderTop: border,
+          borderBottom: border,
+          backgroundColor: colors.white,
+          padding: "40px 24px",
           textAlign: "center",
-          padding: "36px 24px",
-        })}
+          width: "100%",
+          boxSizing: "border-box" as const,
+        }}
       >
-        <p style={{ fontSize: 12, fontWeight: 700, textTransform: "uppercase" as const, letterSpacing: 2, margin: "0 0 20px", color: "#000" }}>
+        <p
+          style={{
+            fontFamily: fontMono,
+            fontSize: 13,
+            color: "#666",
+            marginBottom: 24,
+            textTransform: "uppercase",
+            letterSpacing: 2,
+            fontWeight: 700,
+          }}
+        >
           Trusted by 2,000+ makers at
         </p>
-        <div style={{ display: "flex", gap: 40, justifyContent: "center", flexWrap: "wrap", alignItems: "center" }}>
-          {["Vercel", "Stripe", "Supabase", "Railway", "Resend"].map((b) => (
-            <span key={b} style={{ fontWeight: 900, fontSize: 20, opacity: 0.45 }}>{b}</span>
-          ))}
-        </div>
-      </section>
-
-      {/* 4. FEATURES */}
-      <section id="features" style={section({ background: "#ffe156" })}>
-        <h2 style={heading()}>Everything you need to ship</h2>
-        <p style={{ textAlign: "center" as const, margin: "0 auto 40px", maxWidth: 480, fontSize: 16 }}>
-          Powerful primitives, zero configuration headaches.
-        </p>
-        <div style={grid3}>
-          {[
-            { title: "Instant Deploys", desc: "Push to main and your changes are live in under 8 seconds. No build queues, no waiting." },
-            { title: "Real-time Logs", desc: "Stream structured logs from every service in one unified dashboard. Filter, search, alert." },
-            { title: "Zero-config CI", desc: "Tests run automatically on every PR. Parallel execution, smart caching, fast feedback loops." },
-          ].map((f) => (
-            <div key={f.title} style={card("#fff")}>
-              <h3 style={{ fontWeight: 900, fontSize: 20, margin: "0 0 10px", borderRadius: 0 }}>{f.title}</h3>
-              <p style={{ fontSize: 14, margin: 0, lineHeight: 1.6 }}>{f.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 5. TESTIMONIALS */}
-      <section
-        id="testimonials"
-        style={section({
-          background: "#fff",
-          borderTop: "3px solid #000",
-          borderBottom: "3px solid #000",
-        })}
-      >
-        <h2 style={heading()}>What people are saying</h2>
-        <p style={{ textAlign: "center" as const, margin: "0 auto 40px", maxWidth: 480, fontSize: 16 }}>
-          Don&apos;t take our word for it — hear from the builders.
-        </p>
-        <div style={grid3}>
-          {[
-            { quote: "Stackpulse replaced three tools in our stack overnight. Deploys went from 4 minutes to 8 seconds.", name: "Ava Chen", role: "CTO, Luminary" },
-            { quote: "The logging alone is worth it. We caught a critical bug within minutes of going live. Absolute game-changer.", name: "Marcus Webb", role: "Lead Engineer, Cobalt" },
-            { quote: "Our team shipped 40% more features last quarter after switching. The CI just works — no babysitting.", name: "Priya Desai", role: "VP Eng, Orbit" },
-          ].map((t) => (
-            <div key={t.name} style={card("#ffe156")}>
-              <p style={{ fontStyle: "italic", fontSize: 15, lineHeight: 1.6, margin: "0 0 16px" }}>&ldquo;{t.quote}&rdquo;</p>
-              <p style={{ fontWeight: 800, fontSize: 14, margin: 0 }}>{t.name}</p>
-              <p style={{ fontSize: 13, margin: "2px 0 0", fontWeight: 600 }}>{t.role}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 6. PRICING */}
-      <section id="pricing" style={section({ background: "#ffe156" })}>
-        <h2 style={heading()}>Simple, honest pricing</h2>
-        <p style={{ textAlign: "center" as const, margin: "0 auto 40px", maxWidth: 480, fontSize: 16 }}>
-          No hidden fees. No per-seat surprises. Cancel anytime.
-        </p>
-        <div style={grid3}>
-          {[
-            {
-              plan: "Starter",
-              price: "Free",
-              features: ["1 project", "500 deploys/mo", "Community support", "Basic logs"],
-              highlight: false,
-              cta: "Get Started",
-            },
-            {
-              plan: "Pro",
-              price: "$29/mo",
-              features: ["Unlimited projects", "Unlimited deploys", "Priority support", "Advanced logs", "Custom domains"],
-              highlight: true,
-              cta: "Start Pro Trial",
-            },
-            {
-              plan: "Team",
-              price: "$79/mo",
-              features: ["Everything in Pro", "Team roles & permissions", "SSO / SAML", "Audit logs", "SLA guarantee"],
-              highlight: false,
-              cta: "Contact Sales",
-            },
-          ].map((p) => (
-            <div
-              key={p.plan}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 48,
+            flexWrap: "wrap",
+            maxWidth: 900,
+            margin: "0 auto",
+          }}
+        >
+          {["Vercel", "Stripe", "Linear", "Figma", "Notion"].map((brand) => (
+            <span
+              key={brand}
               style={{
-                ...card(p.highlight ? "#ff6b6b" : "#fff", "6px 6px 0 #000"),
+                fontSize: 22,
+                fontWeight: 900,
+                fontFamily: fontSans,
+                color: "#999",
+                letterSpacing: "-1px",
+                textTransform: "uppercase",
+              }}
+            >
+              {brand}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* ============ FEATURES ============ */}
+      <section id="features" style={sectionPadding}>
+        <h2 style={sectionHeading}>Built Different</h2>
+        <p style={sectionSub}>
+          Everything you need to go from zero to launch at warp speed.
+        </p>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: 24,
+          }}
+        >
+          {[
+            {
+              bg: colors.yellow,
+              icon: "\u26A1",
+              title: "Blazing Fast Deploys",
+              desc: "Push to main and watch your app go live in under 8 seconds. No config needed.",
+            },
+            {
+              bg: colors.blue,
+              icon: "\uD83D\uDD12",
+              title: "Auth Out of the Box",
+              desc: "Social logins, magic links, and API keys \u2014 all wired up from day one.",
+            },
+            {
+              bg: colors.pink,
+              icon: "\uD83D\uDCCA",
+              title: "Real-Time Analytics",
+              desc: "Know exactly what your users are doing with dashboards that update in milliseconds.",
+            },
+          ].map((feature) => (
+            <div key={feature.title} style={cardStyle(feature.bg)}>
+              <div style={{ fontSize: 48, marginBottom: 16 }}>
+                {feature.icon}
+              </div>
+              <h3
+                style={{
+                  fontSize: 22,
+                  fontWeight: 900,
+                  marginBottom: 12,
+                  textTransform: "uppercase",
+                  letterSpacing: "-0.5px",
+                  margin: "0 0 12px",
+                }}
+              >
+                {feature.title}
+              </h3>
+              <p
+                style={{
+                  fontFamily: fontMono,
+                  fontSize: 15,
+                  lineHeight: 1.6,
+                  color: "#222",
+                  margin: 0,
+                }}
+              >
+                {feature.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ============ TESTIMONIALS ============ */}
+      <section
+        style={{
+          backgroundColor: colors.white,
+          borderTop: border,
+          borderBottom: border,
+          width: "100%",
+          boxSizing: "border-box" as const,
+        }}
+      >
+        <div style={sectionPadding}>
+          <h2 style={sectionHeading}>People Are Talking</h2>
+          <p style={sectionSub}>
+            Don&apos;t take our word for it &mdash; hear from the builders.
+          </p>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: 24,
+            }}
+          >
+            {[
+              {
+                bg: colors.purple,
+                quote:
+                  "Stackpulse replaced 4 tools in our stack. Our deploy time went from 12 minutes to 8 seconds. Absolutely unreal.",
+                name: "Mika Chen",
+                role: "CTO at Launchpad",
+              },
+              {
+                bg: colors.green,
+                quote:
+                  "I shipped my SaaS MVP in a weekend. The DX is so good it feels like cheating.",
+                name: "Jordan Lee",
+                role: "Indie Hacker",
+              },
+              {
+                bg: colors.orange,
+                quote:
+                  "We migrated our entire platform in 3 days. The team couldn\u2019t believe how smooth it was.",
+                name: "Ava Torres",
+                role: "Eng Lead at Neonwave",
+              },
+            ].map((t) => (
+              <div key={t.name} style={cardStyle(t.bg)}>
+                <div
+                  style={{
+                    fontSize: 64,
+                    fontWeight: 900,
+                    lineHeight: 0.8,
+                    marginBottom: 12,
+                    fontFamily: "Georgia, serif",
+                  }}
+                >
+                  &ldquo;
+                </div>
+                <p
+                  style={{
+                    fontFamily: fontMono,
+                    fontSize: 15,
+                    lineHeight: 1.7,
+                    color: "#111",
+                    marginBottom: 24,
+                    marginTop: 0,
+                  }}
+                >
+                  {t.quote}
+                </p>
+                <div>
+                  <div style={{ fontWeight: 900, fontSize: 16 }}>{t.name}</div>
+                  <div
+                    style={{
+                      fontFamily: fontMono,
+                      fontSize: 13,
+                      color: "#333",
+                      marginTop: 4,
+                    }}
+                  >
+                    {t.role}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============ PRICING ============ */}
+      <section id="pricing" style={sectionPadding}>
+        <h2 style={sectionHeading}>Simple Pricing</h2>
+        <p style={sectionSub}>
+          No surprises. No hidden fees. Cancel anytime.
+        </p>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: 24,
+            alignItems: "start",
+          }}
+        >
+          {[
+            {
+              tier: "Starter",
+              price: "Free",
+              sub: "forever",
+              bg: colors.white,
+              highlight: false,
+              features: [
+                "1 project",
+                "1 GB storage",
+                "Community support",
+                "Basic analytics",
+                "Deploy previews",
+              ],
+            },
+            {
+              tier: "Pro",
+              price: "$29",
+              sub: "/month",
+              bg: colors.yellow,
+              highlight: true,
+              features: [
+                "Unlimited projects",
+                "50 GB storage",
+                "Priority support",
+                "Advanced analytics",
+                "Custom domains",
+                "Team collaboration",
+              ],
+            },
+            {
+              tier: "Team",
+              price: "$79",
+              sub: "/month",
+              bg: colors.white,
+              highlight: false,
+              features: [
+                "Everything in Pro",
+                "500 GB storage",
+                "Dedicated support",
+                "SSO & SAML",
+                "Audit logs",
+                "SLA guarantee",
+              ],
+            },
+          ].map((plan) => (
+            <div
+              key={plan.tier}
+              style={{
+                ...cardStyle(plan.bg),
+                transform: plan.highlight ? "scale(1.04)" : "none",
+                position: "relative",
                 display: "flex",
                 flexDirection: "column" as const,
               }}
             >
-              <p style={{ fontWeight: 900, fontSize: 18, margin: "0 0 4px", textTransform: "uppercase" as const, letterSpacing: 1 }}>{p.plan}</p>
-              <p style={{ fontWeight: 900, fontSize: 40, margin: "0 0 20px" }}>{p.price}</p>
-              <ul style={{ listStyle: "none", padding: 0, margin: "0 0 24px", flex: 1 }}>
-                {p.features.map((f) => (
-                  <li key={f} style={{ fontSize: 14, padding: "6px 0", fontWeight: 600 }}>&#10003; {f}</li>
-                ))}
-              </ul>
-              <button
+              {plan.highlight && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: -14,
+                    right: 20,
+                    backgroundColor: colors.pink,
+                    border,
+                    padding: "4px 16px",
+                    fontSize: 12,
+                    fontWeight: 900,
+                    fontFamily: fontMono,
+                    textTransform: "uppercase",
+                    boxShadow: "3px 3px 0px #000",
+                    borderRadius: 0,
+                  }}
+                >
+                  Most Popular
+                </div>
+              )}
+
+              <h3
                 style={{
-                  ...btnBase,
-                  width: "100%",
-                  background: p.highlight ? "#000" : "#ffe156",
-                  color: p.highlight ? "#fff" : "#000",
-                  boxShadow: "4px 4px 0 #000",
+                  fontSize: 18,
+                  fontWeight: 900,
+                  textTransform: "uppercase",
+                  marginBottom: 8,
+                  marginTop: 0,
+                  fontFamily: fontMono,
+                  letterSpacing: 1,
                 }}
               >
-                {p.cta}
+                {plan.tier}
+              </h3>
+
+              <div style={{ marginBottom: 24 }}>
+                <span
+                  style={{
+                    fontSize: 48,
+                    fontWeight: 900,
+                    letterSpacing: "-2px",
+                  }}
+                >
+                  {plan.price}
+                </span>
+                <span
+                  style={{
+                    fontFamily: fontMono,
+                    fontSize: 16,
+                    color: "#555",
+                    marginLeft: 4,
+                  }}
+                >
+                  {plan.sub}
+                </span>
+              </div>
+
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                  margin: "0 0 28px 0",
+                  flex: 1,
+                }}
+              >
+                {plan.features.map((f) => (
+                  <li
+                    key={f}
+                    style={{
+                      fontFamily: fontMono,
+                      fontSize: 14,
+                      padding: "8px 0",
+                      borderBottom: "1px dashed #999",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 8,
+                    }}
+                  >
+                    <span style={{ fontWeight: 900, fontSize: 16 }}>
+                      &#10003;
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                style={{
+                  ...baseButton(
+                    plan.highlight ? colors.dark : colors.yellow,
+                    true
+                  ),
+                  width: "100%",
+                  textAlign: "center",
+                  color: plan.highlight ? colors.white : "#000",
+                }}
+              >
+                {plan.price === "Free" ? "Start Free" : "Get Started"} &rarr;
               </button>
             </div>
           ))}
         </div>
       </section>
 
-      {/* 7. CTA */}
+      {/* ============ CTA ============ */}
       <section
-        style={section({
-          background: "#000",
-          textAlign: "center",
+        style={{
+          backgroundColor: colors.dark,
+          borderTop: border,
+          borderBottom: border,
           padding: "80px 24px",
-        })}
+          textAlign: "center",
+          width: "100%",
+          boxSizing: "border-box" as const,
+        }}
       >
-        <h2 style={{ fontSize: 40, fontWeight: 900, color: "#ffe156", margin: "0 0 14px", borderRadius: 0 }}>
-          Ready to ship?
-        </h2>
-        <p style={{ color: "#fff", opacity: 0.65, fontSize: 17, margin: "0 0 36px", maxWidth: 440, marginLeft: "auto", marginRight: "auto" }}>
-          Join thousands of developers who deploy with confidence every single day.
-        </p>
-        <button
+        <h2
           style={{
-            ...btnBase,
-            background: "#ffe156",
-            color: "#000",
-            boxShadow: "6px 6px 0 #ffe156",
-            border: "3px solid #ffe156",
+            fontSize: "clamp(32px, 5vw, 56px)",
+            fontWeight: 900,
+            color: colors.white,
+            textTransform: "uppercase",
+            letterSpacing: "-2px",
+            marginBottom: 12,
+            marginTop: 0,
+            lineHeight: 1.1,
+            borderRadius: 0,
           }}
         >
-          Start Building Now
+          Ready to build
+          <br />
+          <span
+            style={{
+              backgroundColor: colors.yellow,
+              color: "#000",
+              padding: "0 12px",
+              display: "inline-block",
+              border,
+              boxShadow: shadow,
+              transform: "rotate(-1deg)",
+              borderRadius: 0,
+            }}
+          >
+            something epic?
+          </span>
+        </h2>
+
+        <p
+          style={{
+            fontFamily: fontMono,
+            color: "#aaa",
+            fontSize: 18,
+            marginBottom: 36,
+            marginTop: 24,
+          }}
+        >
+          Join 2,000+ developers shipping faster.
+        </p>
+
+        <button style={baseButton(colors.yellow, true)}>
+          Get Started Free &rarr;
         </button>
       </section>
 
-      {/* 8. FOOTER */}
+      {/* ============ FOOTER ============ */}
       <footer
-        style={section({
-          background: "#fff",
-          borderTop: "3px solid #000",
-          padding: "48px 32px 24px",
-        })}
+        style={{
+          borderTop: border,
+          backgroundColor: colors.white,
+          padding: "60px 24px 32px",
+          width: "100%",
+          boxSizing: "border-box" as const,
+        }}
       >
         <div
           style={{
+            maxWidth: 1200,
+            margin: "0 auto",
             display: "flex",
             justifyContent: "space-between",
-            flexWrap: "wrap" as const,
+            flexWrap: "wrap",
             gap: 40,
-            maxWidth: 1060,
-            margin: "0 auto",
           }}
         >
-          <div style={{ minWidth: 200 }}>
-            <p style={{ fontWeight: 900, fontSize: 20, margin: "0 0 8px" }}>&#9650; Stackpulse</p>
-            <p style={{ fontSize: 14, margin: 0, lineHeight: 1.6 }}>Ship faster. Break nothing.<br />Observability for modern teams.</p>
+          <div style={{ maxWidth: 280, minWidth: 200 }}>
+            <div
+              style={{
+                fontSize: 22,
+                fontWeight: 900,
+                letterSpacing: "-1px",
+                marginBottom: 12,
+              }}
+            >
+              &#9650; Stackpulse
+            </div>
+            <p
+              style={{
+                fontFamily: fontMono,
+                fontSize: 14,
+                color: "#666",
+                lineHeight: 1.6,
+                margin: 0,
+              }}
+            >
+              The developer platform for builders who ship fast and break
+              conventions.
+            </p>
           </div>
 
-          {[
-            { title: "Product", links: ["Features", "Pricing", "Changelog", "Docs"] },
-            { title: "Company", links: ["About", "Blog", "Careers", "Contact"] },
-            { title: "Legal", links: ["Privacy", "Terms", "Security", "DPA"] },
-          ].map((col) => (
-            <div key={col.title} style={{ minWidth: 120 }}>
-              <p style={{ fontWeight: 900, fontSize: 14, margin: "0 0 12px", textTransform: "uppercase" as const, letterSpacing: 1 }}>{col.title}</p>
-              {col.links.map((l) => (
-                <a
-                  key={l}
-                  href="#"
+          <div style={{ display: "flex", gap: 64, flexWrap: "wrap" }}>
+            {[
+              {
+                heading: "Product",
+                links: ["Features", "Pricing", "Changelog", "Docs"],
+              },
+              {
+                heading: "Company",
+                links: ["About", "Blog", "Careers", "Contact"],
+              },
+              {
+                heading: "Legal",
+                links: ["Privacy", "Terms", "Cookies", "Licenses"],
+              },
+            ].map((col) => (
+              <div key={col.heading} style={{ minWidth: 120 }}>
+                <h4
                   style={{
-                    display: "block",
-                    textDecoration: "none",
-                    color: "#000",
                     fontSize: 14,
-                    padding: "4px 0",
-                    fontWeight: 600,
+                    fontWeight: 900,
+                    textTransform: "uppercase",
+                    letterSpacing: 2,
+                    marginBottom: 16,
+                    marginTop: 0,
                   }}
                 >
-                  {l}
-                </a>
-              ))}
-            </div>
-          ))}
+                  {col.heading}
+                </h4>
+                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                  {col.links.map((link) => (
+                    <li key={link} style={{ marginBottom: 10 }}>
+                      <a
+                        href="#"
+                        style={{
+                          textDecoration: "none",
+                          color: "#555",
+                          fontFamily: fontMono,
+                          fontSize: 14,
+                          fontWeight: 600,
+                        }}
+                      >
+                        {link}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div
           style={{
-            borderTop: "2px solid #000",
-            marginTop: 40,
-            paddingTop: 20,
-            maxWidth: 1060,
-            marginLeft: "auto",
-            marginRight: "auto",
+            maxWidth: 1200,
+            margin: "48px auto 0",
+            borderTop: "2px dashed #ccc",
+            paddingTop: 24,
+            textAlign: "center",
+            fontFamily: fontMono,
+            fontSize: 13,
+            color: "#999",
           }}
         >
-          <p style={{ fontSize: 13, margin: 0, fontWeight: 600 }}>&copy; 2026 Stackpulse. All rights reserved.</p>
+          &copy; 2026 Stackpulse. All rights reserved. Built with grit.
         </div>
       </footer>
     </div>
