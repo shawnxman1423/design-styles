@@ -31,14 +31,12 @@ export function PromptActions({ prompt }: { prompt: string }) {
         {copied ? "Copied!" : "Copy"}
       </button>
       <OpenIn query={prompt}>
-        <OpenInTrigger className="h-7 text-xs text-neutral-300 hover:text-white px-3" />
+        <OpenInTrigger className="h-6 bg-background text-xs text-foreground rounded-md" />
         <OpenInContent>
-          <OpenInLabel>Open prompt in</OpenInLabel>
-          <OpenInSeparator />
-          <OpenInClaude />
-          <OpenInChatGPT />
-          <OpenInv0 />
-          <OpenInCursor />
+          <OpenInClaude className="h-7 text-xs"/>
+          <OpenInChatGPT className="h-7 text-xs"/>
+          <OpenInv0 className="h-7 text-xs"/>
+          <OpenInCursor className="h-7 text-xs"/>
         </OpenInContent>
       </OpenIn>
     </div>

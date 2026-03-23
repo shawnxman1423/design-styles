@@ -1,10 +1,15 @@
 import { Neobrutalism } from "./styles/neobrutalism";
 import { NeobrutalismLanding } from "./styles/landings/neobrutalism";
 import { Glassmorphism } from "./styles/glassmorphism";
+import { GlassmorphismLanding } from "./styles/landings/glassmorphism";
 import { Neumorphism } from "./styles/neumorphism";
+import { NeumorphismLanding } from "./styles/landings/neumorphism";
 import { Claymorphism } from "./styles/claymorphism";
+import { ClaymorphismLanding } from "./styles/landings/claymorphism";
 import { Skeuomorphism } from "./styles/skeuomorphism";
+import { SkeuomorphismLanding } from "./styles/landings/skeuomorphism";
 import { FlatDesign } from "./styles/flat-design";
+import { FlatDesignLanding } from "./styles/landings/flat-design";
 import { MaterialDesign } from "./styles/material-design";
 import { SoftPop } from "./styles/soft-pop";
 import { Y2KRetroFuturism } from "./styles/y2k-retro-futurism";
@@ -71,11 +76,106 @@ SECTIONS
 
 Keep it lightweight — React with inline styles, no external dependencies.`,
   },
-  { name: "Glassmorphism", slug: "glassmorphism", component: Glassmorphism },
-  { name: "Neumorphism", slug: "neumorphism", component: Neumorphism },
-  { name: "Claymorphism", slug: "claymorphism", component: Claymorphism },
-  { name: "Skeuomorphism", slug: "skeuomorphism", component: Skeuomorphism },
-  { name: "FlatDesign", slug: "flat-design", component: FlatDesign },
+  {
+    name: "Glassmorphism",
+    slug: "glassmorphism",
+    component: Glassmorphism,
+    landing: GlassmorphismLanding,
+    description: "Frosted-glass layers with translucent surfaces, backdrop blur, and vibrant gradients behind. Popularized by Apple's macOS Big Sur and iOS design language, glassmorphism creates depth through layered transparency.",
+    prompt: `Build a landing page in the Glassmorphism style.
+
+SECTIONS
+1. Header — logo "▲ Stackpulse" left, nav links center, sign-up button right
+2. Hero — large headline, subtitle, two side-by-side CTA buttons
+3. Logos bar — "Trusted by 2,000+ makers at" with 5 brand names
+4. Features — section heading + 3 cards in a responsive grid
+5. Testimonials — section heading + 3 quote cards with name and role
+6. Pricing — 3 tiers (Starter/Free, Pro/$29mo, Team/$79mo) with feature lists and CTA buttons. Highlight the Pro tier.
+7. CTA — full-width section with headline and single button
+8. Footer — logo + tagline left, 3 link columns (Product, Company, Legal) right, copyright at bottom
+
+Keep it lightweight — React with inline styles, no external dependencies.`,
+  },
+  {
+    name: "Neumorphism",
+    slug: "neumorphism",
+    component: Neumorphism,
+    landing: NeumorphismLanding,
+    description: "Soft, extruded surfaces that push out from the background using dual light/dark shadows on a matching background color. Elements feel tactile and physically embedded, like buttons molded from the screen itself.",
+    prompt: `Build a landing page in the Neumorphism style.
+
+SECTIONS
+1. Header — logo "▲ Stackpulse" left, nav links center, sign-up button right
+2. Hero — large headline, subtitle, two side-by-side CTA buttons
+3. Logos bar — "Trusted by 2,000+ makers at" with 5 brand names
+4. Features — section heading + 3 cards in a responsive grid
+5. Testimonials — section heading + 3 quote cards with name and role
+6. Pricing — 3 tiers (Starter/Free, Pro/$29mo, Team/$79mo) with feature lists and CTA buttons. Highlight the Pro tier.
+7. CTA — full-width section with headline and single button
+8. Footer — logo + tagline left, 3 link columns (Product, Company, Legal) right, copyright at bottom
+
+Keep it lightweight — React with inline styles, no external dependencies.`,
+  },
+  {
+    name: "Claymorphism",
+    slug: "claymorphism",
+    component: Claymorphism,
+    landing: ClaymorphismLanding,
+    description: "Puffy, inflated 3D appearance with inner and outer shadows that make elements look like molded plasticine. Pastel colors, large border-radius, and soft depth create a playful, tactile feel.",
+    prompt: `Build a landing page in the Claymorphism style.
+
+SECTIONS
+1. Header — logo "▲ Stackpulse" left, nav links center, sign-up button right
+2. Hero — large headline, subtitle, two side-by-side CTA buttons
+3. Logos bar — "Trusted by 2,000+ makers at" with 5 brand names
+4. Features — section heading + 3 cards in a responsive grid
+5. Testimonials — section heading + 3 quote cards with name and role
+6. Pricing — 3 tiers (Starter/Free, Pro/$29mo, Team/$79mo) with feature lists and CTA buttons. Highlight the Pro tier.
+7. CTA — full-width section with headline and single button
+8. Footer — logo + tagline left, 3 link columns (Product, Company, Legal) right, copyright at bottom
+
+Keep it lightweight — React with inline styles, no external dependencies.`,
+  },
+  {
+    name: "Skeuomorphism",
+    slug: "skeuomorphism",
+    component: Skeuomorphism,
+    landing: SkeuomorphismLanding,
+    description: "Realistic textures and materials imitating physical objects — leather, metal, paper, wood grain. Gradients, beveled edges, glossy buttons, and detailed shadows create the illusion of real-world surfaces on screen.",
+    prompt: `Build a landing page in the Skeuomorphism style.
+
+SECTIONS
+1. Header — logo "▲ Stackpulse" left, nav links center, sign-up button right
+2. Hero — large headline, subtitle, two side-by-side CTA buttons
+3. Logos bar — "Trusted by 2,000+ makers at" with 5 brand names
+4. Features — section heading + 3 cards in a responsive grid
+5. Testimonials — section heading + 3 quote cards with name and role
+6. Pricing — 3 tiers (Starter/Free, Pro/$29mo, Team/$79mo) with feature lists and CTA buttons. Highlight the Pro tier.
+7. CTA — full-width section with headline and single button
+8. Footer — logo + tagline left, 3 link columns (Product, Company, Legal) right, copyright at bottom
+
+Keep it lightweight — React with inline styles, no external dependencies.`,
+  },
+  {
+    name: "FlatDesign",
+    slug: "flat-design",
+    component: FlatDesign,
+    landing: FlatDesignLanding,
+    description: "Pure minimalism — no shadows, no gradients, no textures. Just clean geometric shapes, solid colors, and crisp typography. Championed by Microsoft's Metro design and early iOS 7, flat design strips UI to its essentials.",
+    prompt: `Build a landing page in the Flat Design style.
+
+SECTIONS
+1. Header — logo "▲ Stackpulse" left, nav links center, sign-up button right
+2. Hero — large headline, subtitle, two side-by-side CTA buttons
+3. Logos bar — "Trusted by 2,000+ makers at" with 5 brand names
+4. Features — section heading + 3 cards in a responsive grid
+5. Testimonials — section heading + 3 quote cards with name and role
+6. Pricing — 3 tiers (Starter/Free, Pro/$29mo, Team/$79mo) with feature lists and CTA buttons. Highlight the Pro tier.
+7. CTA — full-width section with headline and single button
+8. Footer — logo + tagline left, 3 link columns (Product, Company, Legal) right, copyright at bottom
+
+Keep it lightweight — React with inline styles, no external dependencies.`,
+  },
   { name: "MaterialDesign", slug: "material-design", component: MaterialDesign },
   { name: "SoftPop", slug: "soft-pop", component: SoftPop },
   { name: "Y2KRetroFuturism", slug: "y2k-retro-futurism", component: Y2KRetroFuturism },
