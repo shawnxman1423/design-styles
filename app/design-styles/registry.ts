@@ -1,4 +1,5 @@
 import { Neobrutalism } from "./styles/neobrutalism";
+import { NeobrutalismLanding } from "./styles/landings/neobrutalism";
 import { Glassmorphism } from "./styles/glassmorphism";
 import { Neumorphism } from "./styles/neumorphism";
 import { Claymorphism } from "./styles/claymorphism";
@@ -44,10 +45,72 @@ export type DesignStyle = {
   name: string;
   slug: string;
   component: React.ComponentType;
+  landing?: React.ComponentType;
+  prompt?: string;
+  description?: string;
 };
 
 export const designStyles: DesignStyle[] = [
-  { name: "Neobrutalism", slug: "neobrutalism", component: Neobrutalism },
+  {
+    name: "Neobrutalism",
+    slug: "neobrutalism",
+    component: Neobrutalism,
+    landing: NeobrutalismLanding,
+    description: "Bold, raw aesthetic with high contrast, chunky elements, and hard shadows. Neobrutalism rejects polish in favor of loud, unapologetic design. Think thick black borders, offset box-shadows, clashing bright colors, and elements that feel like they were stamped onto the page. Popularized by Gumroad's redesign in 2021, it's become a go-to for indie hackers and creative tools that want to stand out.",
+    prompt: `Design Style: Neobrutalism
+Build a landing page in the Neobrutalism design style using React with inline styles only.
+
+---
+
+STRUCTURE
+8 sections in this order:
+1. Header — logo, nav links, sign-up button
+2. Hero — bold headline, subtitle, two CTA buttons
+3. Logos bar — "Trusted by" social proof with brand names
+4. Features — 3 cards in a responsive grid
+5. Testimonials — 3 quote cards in a grid
+6. Pricing — 3 tiers (Free, Pro, Team)
+7. CTA — full-width closing call to action
+8. Footer — logo, link columns, copyright
+
+---
+
+VISUAL RULES
+Colors:
+  - Primary background: yellow #ffe156
+  - Accent: coral #ff6b6b
+  - Alternating sections: white #fff
+  - Text & borders: black #000
+
+Borders & Shadows:
+  - All borders: 2-3px solid #000
+  - All shadows: hard offset, no blur (e.g. 4px 4px 0 #000, 6px 6px 0 #000)
+  - Section dividers: 3px solid #000
+
+Typography:
+  - Headings: font-weight 800-900
+  - Hero title: 56px
+  - Section headings: 36px
+  - Body: 14-16px
+
+Shape:
+  - Border-radius: 0 on everything
+  - No gradients, no blur, no soft shadows
+
+---
+
+KEY DETAILS
+- Header: white bg, black bottom border, logo "▲ Stackpulse" left, nav center, black button right
+- Hero: yellow bg, centered, two buttons (coral primary + white secondary) with 6px offset shadows
+- Logos bar: white bg with top/bottom black borders, brand names at reduced opacity
+- Features: yellow bg, white cards with black borders and 4px offset shadows
+- Testimonials: white bg, yellow cards with italic quotes and bold attribution
+- Pricing: yellow bg, Pro tier highlighted in coral #ff6b6b, all cards with 6px offset shadows and full-width CTA buttons
+- CTA section: black bg, yellow #ffe156 text, yellow button
+- Footer: white bg, black top border, 3 link columns, copyright separated by 2px black rule
+
+Overall vibe: raw, confident, playful — a zine made a website.`,
+  },
   { name: "Glassmorphism", slug: "glassmorphism", component: Glassmorphism },
   { name: "Neumorphism", slug: "neumorphism", component: Neumorphism },
   { name: "Claymorphism", slug: "claymorphism", component: Claymorphism },

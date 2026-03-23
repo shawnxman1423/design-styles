@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { designStyles } from "./registry";
 
 export default function DesignStylesPage() {
@@ -6,13 +7,26 @@ export default function DesignStylesPage() {
       <h1 className="text-4xl font-bold text-center mb-2">UI Design Styles</h1>
       <p className="text-neutral-400 text-center mb-12 max-w-xl mx-auto">
         A visual showcase of {designStyles.length} design aesthetics. Each card
-        is styled in the aesthetic it represents.
+        is styled in the aesthetic it represents. Click any style to see a full
+        landing page and copy its AI prompt.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 max-w-7xl mx-auto">
-        {designStyles.map((style) => (
-          <style.component key={style.slug} />
-        ))}
+        {designStyles.map((style) =>
+          style.prompt ? (
+            <Link
+              key={style.slug}
+              href={`/design-styles/${style.slug}`}
+              className="block transition-transform hover:scale-[1.02] focus:outline-none"
+            >
+              <style.component />
+            </Link>
+          ) : (
+            <div key={style.slug}>
+              <style.component />
+            </div>
+          ),
+        )}
       </div>
 
       <p className="text-neutral-500 text-center mt-12 text-sm pb-8">
