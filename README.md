@@ -37,7 +37,7 @@ So I built one place to find them all.
 
 ```bash
 # Clone the repo
-git clone https://github.com/shawndev/design-styles.git
+git clone https://github.com/shawnxman1423/design-styles.git
 cd design-styles
 
 # Install dependencies
